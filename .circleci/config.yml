@@ -52,9 +52,10 @@ jobs:
             - serf-modcache-v1-{{ checksum "go.mod" }}
 
       # run go tests with gotestsum
-      - run: |
-          PACKAGE_NAMES=$(go list ./...)
-          gotestsum --format=short-verbose --junitfile $TEST_RESULTS/gotestsum-report.xml -- $PACKAGE_NAMES
+      # - run: |
+      #     PACKAGE_NAMES=$(go list ./...)
+      #     gotestsum --format=short-verbose --junitfile $TEST_RESULTS/gotestsum-report.xml -- $PACKAGE_NAMES
+      - run: make test
       - store_test_results:
           path: /tmp/test-results
       - store_artifacts:
